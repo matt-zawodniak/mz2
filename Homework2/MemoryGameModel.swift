@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct MemoryGame<CardContent> where CardContent: Equatable {
+struct MemoryGameModel<CardContent> where CardContent: Equatable {
 	private(set) var cards: Array<Card>
 	
 	private var indexOfTheOneAndOnlyFaceUpCard: Int?
@@ -50,4 +51,5 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 		var id: Int
 					
 	}
+	
 }

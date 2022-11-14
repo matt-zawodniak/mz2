@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel: EmojiMemoryGame
+    @ObservedObject var viewModel: EmojiMemoryGameViewModel
 	
 	var body: some View{
+		VStack{
 			ScrollView {
 				LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
 					ForEach(viewModel.cards) { card in CardView(card: card)
@@ -21,13 +22,19 @@ struct ContentView: View {
 					}
 				}
 			}
-			.foregroundColor(.red)
+		//	Button("New Game", action: {
+		//		EmojiMemoryGameViewModel.selectedTheme = EmojiMemoryGameViewModel.themes.randomElement()
+		//	}) This button changes the theme but doesn't rebuild the memory game, so you can only see the color changing
+			
+			}
+			.foregroundColor(EmojiMemoryGameViewModel.selectedTheme?.color)
 			.padding(.horizontal)
+			
+		}
 	}
-}
 
 struct CardView: View{
-	let card: MemoryGame<String>.Card
+	let card: MemoryGameModel<String>.Card
 	
 	var body: some View {
 		ZStack {
@@ -48,7 +55,7 @@ struct CardView: View{
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-		let game = EmojiMemoryGame()
+		let game = EmojiMemoryGameViewModel()
 		ContentView(viewModel: game)
     }
 }
