@@ -22,9 +22,9 @@ struct ContentView: View {
 					}
 				}
 			}
-		//	Button("New Game", action: {
-		//		EmojiMemoryGameViewModel.selectedTheme = EmojiMemoryGameViewModel.themes.randomElement()
-		//	}) This button changes the theme but doesn't rebuild the memory game, so you can only see the color changing
+			Button("New Game", action: {
+				viewModel.newGame()
+				}) //This button changes the theme but doesn't rebuild the memory game, so you can only see the color changing
 			
 			}
 			.foregroundColor(EmojiMemoryGameViewModel.selectedTheme?.color)

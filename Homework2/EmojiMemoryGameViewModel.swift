@@ -43,5 +43,9 @@ class EmojiMemoryGameViewModel: ObservableObject {
 	func choose(_ card: MemoryGameModel<String>.Card) {
 		model.choose(card)
 	}
-		
+	
+	func newGame() {
+		EmojiMemoryGameViewModel.selectedTheme = EmojiMemoryGameViewModel.themes.randomElement()
+		model = EmojiMemoryGameViewModel.createMemoryGame()
+	}
 }
