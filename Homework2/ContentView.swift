@@ -12,8 +12,25 @@ struct ContentView: View {
 	
 	var body: some View{
 		VStack{
+			HStack{
+				Text(EmojiMemoryGameViewModel.selectedTheme!.name).font(.largeTitle).padding()
+				Spacer()
+				VStack{
+					Text("Score")
+					ZStack{
+						RoundedRectangle(cornerRadius: 20)
+							.fill().foregroundColor(.white)
+							.frame(width: 50, height: 50)
+						RoundedRectangle(cornerRadius: 20)
+							.strokeBorder(lineWidth: 3)
+							.frame(width: 50, height: 50)
+						Text(viewModel.score)
+					}
+				}.frame(height: 100)
+
+			}
 			ScrollView {
-				LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
+				LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
 					ForEach(viewModel.cards) { card in CardView(card: card)
 							.aspectRatio(2/3, contentMode: .fit)
 							.onTapGesture {
@@ -22,14 +39,15 @@ struct ContentView: View {
 					}
 				}
 			}
-			Button("New Game", action: {
-				viewModel.newGame()
-				}) //This button changes the theme but doesn't rebuild the memory game, so you can only see the color changing
-			
+			.padding(.vertical)
+
+				Button("New Game", action: {
+					viewModel.newGame()
+				})
+				.padding(.horizontal)
 			}
 			.foregroundColor(EmojiMemoryGameViewModel.selectedTheme?.color)
 			.padding(.horizontal)
-			
 		}
 	}
 
